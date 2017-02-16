@@ -1,61 +1,66 @@
+<!--
+ #### View setup:
+ 1. Inside your `burger` directory, create a folder named `views`.
+ * Create the `index.handlebars` file inside `views` directory.
+ * Setup the `index.handlebars` to have the template that Handlebars can render onto.
+  -->
 <header class="text-center">
-    <div class="jumbotron mainBanner">
+    <div class="jumbotron burger-header">
         <h1>Burgers</h1>
     </div>
 </header>
 <main>
     <div class="container text-center">
-        <div class="burger-container">
-            <div class="row main">
-                <div class="col-md-6 col-xs-12">
-                    <h1>New</h1>
-                    {{#each burgers}} 
-                        {{#unless this.devoured}}
-                            <div class="row burgers">
-                                <div class="col-xs-9 burger">
-                                    <h2>{{this.burger_name}}</h2>
-                                </div>
-                                <div class="col-xs-3">
+        <div class="row main">
+            <div class="col-md-6 col-xs-12">
+                <!-- * Create a button in `index.handlebars` that will submit the user input into the database. -->
+                <h1>New</h1>
+                {{#each burgers}} 
+                    {{#unless this.devoured}}
+                        <div class="row burgers">
+                            <div class="col-xs-9 burger">
+                                <h2>{{this.burger_name}}</h2>
+                            </div>
+                            <div class="col-xs-3">
+                                <form action="/devour/{{this.id}}?_method=PUT" method="POST">
+                                    <button class="btn btn-success" type="submit" style="float:right">Devour!</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr class="break"> 
+                    {{/unless}} 
+                {{/each}}
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <h1>Devoured</h1>
+                {{#each burgers}} 
+                    {{#if this.devoured}}
+                        <div class="row burgers">
+                            <div class="col-xs-9 burger">
+                                <h2>{{this.burger_name}}</h2>
+                            </div>
+                            <div class="col-xs-3">
+                                <!--
                                     <form action="/devour/{{this.id}}?_method=PUT" method="POST">
-                                        <button class="btn btn-success" type="submit" style="float:right">Devour!</button>
+                                    <button class="btn btn-success" type="submit" style="float:right">Devour!</button>
                                     </form>
-                                </div>
+                                -->
                             </div>
-                            <hr class="break"> 
-                        {{/unless}} 
-                    {{/each}}
-                </div>
-                <div class="col-md-6 col-xs-12">
-                    <h1>Devoured</h1>
-                    {{#each burgers}} 
-                        {{#if this.devoured}}
-                            <div class="row burgers">
-                                <div class="col-xs-9 burger">
-                                    <h2>{{this.burger_name}}</h2>
-                                </div>
-                                <div class="col-xs-3">
-                                    <!--
-                                        <form action="/devour/{{this.id}}?_method=PUT" method="POST">
-                                        <button class="btn btn-success" type="submit" style="float:right">Devour!</button>
-                                        </form>
-                                    -->
-                                </div>
-                            </div>
-                            <hr class="break"> 
-                        {{/if}} 
-                    {{/each}}
-                </div>
+                        </div>
+                        <hr class="break"> 
+                    {{/if}} 
+                {{/each}}
             </div>
-            <div class="row bottom">
-                <h1>Add Burger</h1>
-                <form class="form-inline" action="/create" method="POST">
-                    <div class="form-group">
-                        <label for="ca"><h4>Name:</h4></label>
-                        <input type="text" id="ca" name="name" class="form-control" required>
-                    </div>
-                    <button class="btn btn-success" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add</button>
-                </form>
-            </div>
+        </div>
+        <div class="row bottom">
+            <h1>Add Burger</h1>
+            <form class="form-inline" action="/create" method="POST">
+                <div class="form-group">
+                    <label for="ca"><h4>Name:</h4></label>
+                    <input type="text" id="ca" name="name" class="form-control" required>
+                </div>
+                <button class="btn btn-success" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add</button>
+            </form>
         </div>
     </div>
 </main>

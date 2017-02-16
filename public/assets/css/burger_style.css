@@ -1,0 +1,8 @@
+.burger-header{
+	background-image: url("../img/burger.png");
+	background-size: contain;
+}
+.burger-header h1{
+	color: white;
+	background-color: rgba(0, 0, 0, .6);
+}
