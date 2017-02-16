@@ -11,31 +11,9 @@
  * Export the ORM object in `module.exports`.
 */
 
-// Import MySQL connection.
-var connection = require("connection.js");
+var connection = require("connection.js"); // Import MySQL connection.
 
-// Helper function for SQL syntax.
-function printQuestionMarks(num) {
-    var arr = [];
-    for (var i = 0; i < num; i++) {
-        arr.push("?");
-    };
-    return arr.toString();
-};
-
-// Helper function for SQL syntax.
-function objToSql(ob) {
-    var arr = [];
-    for (var key in ob) {
-        if (Object.hasOwnProperty.call(ob, key)) {
-            arr.push(key + "=" + ob[key]);
-        };
-    };
-    return arr.toString();
-};
-
-// Object for all our SQL statement functions.
-var orm = {
+var orm = { // Object for all our SQL statement functions.
     selectAll: function (tableInput, cb) { //select all
         var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, result) {

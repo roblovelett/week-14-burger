@@ -11,8 +11,8 @@ var burger = require("../models/burger.js");
 var bodyParser = require('body-parser');
 
 // Create all our routes and set up logic within those routes where required.
-router.get("/", function(req, res) {
-  burger.all(function(data) {
+router.get("/", function (req, res) {
+  burger.all(function (data) {
     var hbsObject = { //handlebars object
       burgers: data //array of objects, #each burgers  
     };
@@ -21,35 +21,22 @@ router.get("/", function(req, res) {
   });
 });
 
-router.post("/", function(req, res) {
-  burger.create([
-    "name", "sleepy"
-  ], [
-    req.body.name, req.body.sleepy
-  ], function() {
-    res.redirect("/");
-  });
+router.post('/create', function (req, res) {
+  //call burger logic insertOne function(column,data,callback);
+  burger.create('burger_name', req.body.name, function () {
+    //redirect to updated main page after insertOne
+    res.redirect('/');
+  })
 });
 
-router.put("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  console.log("condition", condition);
-
-  cat.update({
-    sleepy: req.body.sleepy
-  }, condition, function() {
-    res.redirect("/");
-  });
+router.put('/devour/:id', function (req, res) {
+  burger.update('devoured', 1, req.params.id, function () {
+    res.redirect('/');
+  })
 });
 
-router.delete("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  cat.delete(condition, function() {
-    res.redirect("/");
-  });
+router.use(function (req, res) { //init load/direct
+  res.redirect('/');
 });
 
-// Export routes for server.js to use.
-module.exports = router;
+module.exports = router; //export
