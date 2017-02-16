@@ -41,7 +41,7 @@ var orm = {
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
-            }
+            };
             cb(result);
         });
     },
@@ -56,8 +56,8 @@ var orm = {
         });
     },
     // An example of objColVals would be {name: panther, sleepy: true} 
-    updateOne: function (table, objColVals, condition, cb) { //update
-        var queryString = "UPDATE " + table + " SET " + objToSql(objColVals) + " WHERE " + condition;
+    updateOne: function (table, col, val, cb) { //update
+        var queryString = "UPDATE " + table + " SET " + col + "  = 1 WHERE id = " + val ;
         console.log(queryString);
         connection.query(queryString, function (err, result) {
             if (err) {
@@ -66,18 +66,6 @@ var orm = {
             cb(result);
         });
     }
-    /*
-    delete: function (table, condition, cb) {
-        var queryString = "DELETE FROM " + table + " WHERE " + condition;
-        console.log(queryString);
-        connection.query(queryString, function (err, result) {
-            if (err) {
-                throw err;
-            };
-            cb(result);
-        });
-    }
-    */
 };
 
 // Export the orm object for the model (cat.js).
