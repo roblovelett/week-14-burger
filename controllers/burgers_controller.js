@@ -21,9 +21,9 @@ router.get("/", function (req, res) {
 
 router.post("/create", function (req, res) {
   //call burger logic insertOne function(column,data,callback);
-  burger.create('burger_name', req.body.name, function () {
+  burger.create("burger_name", req.body.name, function () {
     //redirect to updated main page after insertOne
-    res.redirect('/');
+    res.redirect("/");
   })
 });
 
