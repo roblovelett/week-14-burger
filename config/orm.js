@@ -45,8 +45,8 @@ var orm = {
             cb(result);
         });
     },
-    insertOne: function (table, cols, vals, cb) { //add a burger
-        var queryString = "INSERT INTO " + table + " (" + cols.toString() + ") VALUES (" + printQuestionMarks(vals.length) + ") ";
+    insertOne: function (table, col, val, cb) { //add a burger
+        var queryString = "INSERT INTO " + table + " (" + col + ") VALUES (" + val + ");";
         console.log(queryString);
         connection.query(queryString, vals, function (err, result) {
             if (err) {
@@ -57,7 +57,7 @@ var orm = {
     },
     // An example of objColVals would be {name: panther, sleepy: true} 
     updateOne: function (table, col, val, cb) { //update
-        var queryString = "UPDATE " + table + " SET " + col + "  = 1 WHERE id = " + val ;
+        var queryString = "UPDATE " + table + " SET " + col + "  = 1 WHERE id = " + val + ";";
         console.log(queryString);
         connection.query(queryString, function (err, result) {
             if (err) {
