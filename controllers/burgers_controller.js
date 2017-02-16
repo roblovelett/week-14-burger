@@ -1,14 +1,12 @@
-/*
-3. Inside the `burgers_controller.js` file, import the following: * Express *
+/*3. Inside the `burgers_controller.js` file, import the following: * Express *
 `burger.js`
 4. Create the `router` for the app, and export the `router` at the end of your
-file.
-*/
+file.*/
 
 var express = require("express");
 var router = express.Router();
 var burger = require("../models/burger.js");
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function (req, res) {
@@ -21,7 +19,7 @@ router.get("/", function (req, res) {
   });
 });
 
-router.post('/create', function (req, res) {
+router.post("/create", function (req, res) {
   //call burger logic insertOne function(column,data,callback);
   burger.create('burger_name', req.body.name, function () {
     //redirect to updated main page after insertOne
@@ -29,14 +27,14 @@ router.post('/create', function (req, res) {
   })
 });
 
-router.put('/devour/:id', function (req, res) {
-  burger.update('devoured', 1, req.params.id, function () {
-    res.redirect('/');
+router.put("/devour/:id", function (req, res) {
+  burger.update("devoured", 1, req.params.id, function () {
+    res.redirect("/");
   })
 });
 
 router.use(function (req, res) { //init load/direct
-  res.redirect('/');
+  res.redirect("/");
 });
 
 module.exports = router; //export

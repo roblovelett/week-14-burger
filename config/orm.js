@@ -1,5 +1,4 @@
-/*
- 3. Create an `orm.js` file inside `config` directory.
+/*3. Create an `orm.js` file inside `config` directory.
 
  * Import (require) `connection.js` into `orm.js`
 
@@ -8,8 +7,7 @@
  in order to retrieve and store data in your database. * `selectAll()` *
  `insertOne()` * `updateOne()`
 
- * Export the ORM object in `module.exports`.
-*/
+ * Export the ORM object in `module.exports`.*/
 
 var connection = require("connection.js"); // Import MySQL connection.
 
@@ -33,8 +31,7 @@ var orm = { // Object for all our SQL statement functions.
             cb(result);
         });
     },
-    // An example of objColVals would be {name: panther, sleepy: true} 
-    updateOne: function (table, col, val, cb) { //update
+    updateOne: function (table, col, val, cb) { //update/devour burger
         var queryString = "UPDATE " + table + " SET " + col + "  = 1 WHERE id = " + val + ";";
         console.log(queryString);
         connection.query(queryString, function (err, result) {
@@ -46,5 +43,4 @@ var orm = { // Object for all our SQL statement functions.
     }
 };
 
-// Export the orm object for the model (cat.js).
-module.exports = orm;
+module.exports = orm; //export orm
