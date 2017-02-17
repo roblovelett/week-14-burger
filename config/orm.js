@@ -9,7 +9,7 @@
 
  * Export the ORM object in `module.exports`.*/
 
-var connection = require("connection.js"); // Import MySQL connection.
+var connection = require("../config/connection.js"); // Import MySQL connection.
 
 var orm = { // Object for all our SQL statement functions.
     selectAll: function (tableInput, cb) { //select all
